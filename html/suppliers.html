@@ -1,8 +1,41 @@
-  <div ng-repeat='supplier in suppliers'>
-    <div class="row">
-      <div class="col-md-3">{{supplier.id}}</div>
-      <div class="col-md-3">{{supplier.name}}</div>
-      <div class="col-md-3">{{supplier.city}}</div>
-      <div class="col-md-3">{{supplier.reference}}</div>
+</br>
+<div ng-repeat='supplier in suppliers'>
+  <div class="row">
+    <div class="col-md-1">{{supplier.id}}</div>
+    <div class="col-md-3">{{supplier.name}}</div>
+    <div class="col-md-3">{{supplier.city}}</div>
+    <div class="col-md-3">{{supplier.reference}}</div>
+    <div class="col-md-2">
+      <button ng-click='editSupplier(supplier)' class="btn btn-info" ng-hide="busyEditing">Edit</button>
+      <button ng-click='deleteSupplier(supplier.id)' class="btn btn-danger" ng-hide="busyEditing">Delete</button>
+
     </div>
   </div>
+</div>
+
+<!-- Edit Supplier -->
+</br></br>
+<h4>Edit Supplier</h4>
+<div ng-show="busyEditing">
+    <form novalidate class="simple-form">
+      <div class="row">
+        <label>ID: {{supplierBeingEditedId.id}}</label>
+      </div>
+      <div class="row">
+        <label>Name: <input type="text" ng-model="supplierBeingEditedId.name" /></label>
+      </div>
+      <div class="row">
+        <label>City: <input type="text" ng-model="supplierBeingEditedId.city" /></label>
+      </div>
+      <div class="row">
+        <label>Reference: <input type="text" ng-model="supplierBeingEditedId.reference" /></label>
+      </div>
+      <div class="row ">
+        <button ng-click='submitEditedSupplier(supplierBeingEditedId)' class="btn btn-info" >Submit</button>
+        <button ng-click='cancelSupplierEdit()' class="btn btn-danger" >Cancel</button>
+      </div>
+    </form>
+</div>
+
+<!-- temporarily using this for spacing  -->
+</br></br></br></br></br></br>
