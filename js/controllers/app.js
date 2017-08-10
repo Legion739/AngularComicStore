@@ -14,6 +14,9 @@ app.controller('StoreController',[ '$scope', '$http', 'showcaseService', functio
     $scope.busyDeleting = false;
     $scope.supplierIdBeingDeleted = -1;
 
+    $scope.creatingNewSupplier = false;
+    $scope.newSupplier = [];
+
     $scope.suppliers = showcaseService.query(function() {
       // Do something after service retruns data
     });
@@ -62,7 +65,6 @@ app.controller('StoreController',[ '$scope', '$http', 'showcaseService', functio
            console.log(data);
            $scope.busyEditing = false;
       });
-
     };
 
     $scope.deleteSupplier = function(supplierID){
@@ -86,6 +88,27 @@ app.controller('StoreController',[ '$scope', '$http', 'showcaseService', functio
       $scope.busyDeleting = false;
     };
 
+    // create New Supplier
+    $scope.createNewSupplier = function(supplier){
+      $scope.creatingNewSupplier = true;
+      $scope.newSupplier = {  name: '',
+                              city: '',
+                              reference: ''};
+    };
+
+    // Cancel New Supplier
+    $scope.cancelNewSupplier = function(){
+      $scope.creatingNewSupplier = false;
+    };
+
+    // submitEditedSupplier
+    $scope.submitNewSupplier = function(supplier){
+      var supplierPromise = showcaseService.save({}, supplier);
+      supplierPromise.$promise.then(function (data) {
+           console.log("new supplier added");
+           $scope.creatingNewSupplier = false;
+      });
+    };
 
 
 }]);

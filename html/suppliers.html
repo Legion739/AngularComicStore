@@ -1,3 +1,26 @@
+<!-- Create new Supervisor -->
+<div>
+</br>
+  <div ng-show="creatingNewSupplier">
+      <form novalidate class="simple-form">
+        <div class="row">
+          <label class="col-md-1">Name: </label><input class="col-md-4" type="text" ng-model="newSupplier.name" />
+        </div>
+        <div class="row">
+          <label class="col-md-1">City: </label><input class="col-md-4" type="text" ng-model="newSupplier.city" />
+        </div>
+        <div class="row">
+          <label class="col-md-1">Reference: </label><input class="col-md-4" type="text" ng-model="newSupplier.reference" />
+        </div>
+        <div class="row ">
+          <button ng-click='submitNewSupplier(newSupplier)' class="btn btn-info" >Submit</button>
+          <button ng-click='cancelNewSupplier()' class="btn btn-danger" >Cancel</button>
+        </div>
+      </form>
+  </div>
+  <button ng-click='createNewSupplier()' ng-hide='creatingNewSupplier' class="btn btn-success btn-lg">Create New Supplier</button>
+<div>
+
 <!-- Delete Supplier -->
 <div ng-show="busyDeleting">
 <h4>Edit Supplier</h4>
@@ -27,16 +50,16 @@
 <div ng-show="busyEditing">
     <form novalidate class="simple-form">
       <div class="row">
-        <label>ID: {{supplierBeingEditedId.id}}</label>
+        <label class="col-md-1">ID: {{supplierBeingEditedId.id}}</label>
       </div>
       <div class="row">
-        <label>Name: <input type="text" ng-model="supplierBeingEditedId.name" /></label>
+        <label class="col-md-1">Name: </label><input class="col-md-4" type="text" ng-model="supplierBeingEditedId.name" />
       </div>
       <div class="row">
-        <label>City: <input type="text" ng-model="supplierBeingEditedId.city" /></label>
+        <label class="col-md-1">City: </label><input class="col-md-4" type="text" ng-model="supplierBeingEditedId.city" />
       </div>
       <div class="row">
-        <label>Reference: <input type="text" ng-model="supplierBeingEditedId.reference" /></label>
+        <label class="col-md-1">Reference: </label><input class="col-md-4" type="text" ng-model="supplierBeingEditedId.reference" />
       </div>
       <div class="row ">
         <button ng-click='submitEditedSupplier(supplierBeingEditedId)' class="btn btn-info" >Submit</button>
