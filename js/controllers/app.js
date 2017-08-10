@@ -11,17 +11,12 @@ app.controller('StoreController',[ '$scope', '$http', 'showcaseService', functio
     $scope.busyEditing = false;
     $scope.supplierBeingEditedId = [];
 
+    $scope.busyDeleting = false;
+    $scope.supplierIdBeingDeleted = -1;
+
     $scope.suppliers = showcaseService.query(function() {
       // Do something after service retruns data
     });
-
-
-    /* // Code that can be used to get a specific supplier by ID
-    $scope.editSupSelect = showcaseService.get({ id: 15 }, function() {
-      console.log($scope.editSupSelect);
-    });*/
-
-
 
     //get orders - TODO move to factory
     $http.get('http://frontendshowcase.azurewebsites.net/api/Orders')
@@ -61,16 +56,34 @@ app.controller('StoreController',[ '$scope', '$http', 'showcaseService', functio
     };
 
     // submitEditedSupplier
-    // TODO this is actually submiting a new supervisor and not updating an existing one.
     $scope.submitEditedSupplier = function(supplier){
-      //Use the resource to add a new Supplier
-      supplier.id = '';
-      var editSupplierPromise = showcaseService.save({}, supplier);
+      var editSupplierPromise = showcaseService.update({}, supplier);
       editSupplierPromise.$promise.then(function (data) {
            console.log(data);
            $scope.busyEditing = false;
       });
 
+    };
+
+    $scope.deleteSupplier = function(supplierID){
+      $scope.supplierIdBeingDeleted = supplierID;
+      $scope.busyDeleting = true;
+
+    };
+
+    $scope.deleteSupplierConfirm = function(){
+      // Code that can be used to delete a specific supplier by ID
+      $scope.editSupSelect = showcaseService.delete({ id: $scope.supplierIdBeingDeleted }, function() {
+        $scope.busyDeleting = false;
+        console.log("You have deleted Supplier " + $scope.supplierIdBeingDeleted);
+        $scope.supplierIdBeingDeleted = -1;
+
+      });
+
+    };
+
+    $scope.deleteSupplierCancel = function(){
+      $scope.busyDeleting = false;
     };
 
 

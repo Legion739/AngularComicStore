@@ -1,4 +1,13 @@
+<!-- Delete Supplier -->
+<div ng-show="busyDeleting">
+<h4>Edit Supplier</h4>
+  <div ng-hide="busyEditing || !busyDeleting"> Are you sure you want to delete Supervisor {{supplierIdBeingDeleted}} ?</div>
+  <button ng-click='deleteSupplierConfirm()' class="btn btn-info">Yes</button>
+  <button ng-click='deleteSupplierCancel()' class="btn btn-danger">Cancel</button>
+</div>
+
 </br>
+<!-- Display Supliers -->
 <div ng-repeat='supplier in suppliers'>
   <div class="row">
     <div class="col-md-1">{{supplier.id}}</div>
@@ -6,16 +15,15 @@
     <div class="col-md-3">{{supplier.city}}</div>
     <div class="col-md-3">{{supplier.reference}}</div>
     <div class="col-md-2">
-      <button ng-click='editSupplier(supplier)' class="btn btn-info" ng-hide="busyEditing">Edit</button>
-      <button ng-click='deleteSupplier(supplier.id)' class="btn btn-danger" ng-hide="busyEditing">Delete</button>
-
+      <button ng-click='editSupplier(supplier)' class="btn btn-info" ng-hide="busyEditing || busyDeleting">Edit</button>
+      <button ng-click='deleteSupplier(supplier.id)' class="btn btn-danger" ng-hide="busyEditing || busyDeleting">Delete</button>
     </div>
   </div>
 </div>
 
 <!-- Edit Supplier -->
 </br></br>
-<h4>Edit Supplier</h4>
+<h4 ng-show="busyEditing">Edit Supplier</h4>
 <div ng-show="busyEditing">
     <form novalidate class="simple-form">
       <div class="row">
