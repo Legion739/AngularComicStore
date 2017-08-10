@@ -17,8 +17,14 @@ app.controller('StoreController',[ '$scope', '$http', 'showcaseService', functio
     $scope.creatingNewSupplier = false;
     $scope.newSupplier = [];
 
-    $scope.suppliers = showcaseService.query(function() {
+    $scope.SuppCurrentPage = 0;
+    $scope.SuppPageSize = 10;
+
+    $scope.suppliers = showcaseService.query(function(data) {
       // Do something after service retruns data
+      $scope.numberOfPages=function(){
+          return Math.ceil(data.length/$scope.SuppPageSize);
+      }
     });
 
     //get orders - TODO move to factory
@@ -112,3 +118,10 @@ app.controller('StoreController',[ '$scope', '$http', 'showcaseService', functio
 
 
 }]);
+
+app.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+});

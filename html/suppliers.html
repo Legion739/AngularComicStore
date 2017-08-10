@@ -31,7 +31,9 @@
 
 </br>
 <!-- Display Supliers -->
-<div ng-repeat='supplier in suppliers'>
+<div class='row'><label class="col-md-1">Search: </label><input class="col-md-4" type="text" ng-model="searchKeyword" /> </div>
+</br>
+<div ng-repeat='supplier in suppliers | startFrom:SuppCurrentPage*SuppPageSize | limitTo:SuppPageSize | filter: searchKeyword'>
   <div class="row">
     <div class="col-md-1">{{supplier.id}}</div>
     <div class="col-md-3">{{supplier.name}}</div>
@@ -43,6 +45,14 @@
     </div>
   </div>
 </div>
+
+    <button class='btn-sm btn' ng-disabled="SuppCurrentPage == 0" ng-click="SuppCurrentPage=SuppCurrentPage-1">
+        Previous
+    </button>
+    {{SuppCurrentPage+1}}/{{numberOfPages()}}
+    <button class='btn-sm btn' ng-disabled="SuppCurrentPage >= suppliers.length/SuppPageSize - 1" ng-click="SuppCurrentPage=SuppCurrentPage+1">
+        Next
+    </button>
 
 <!-- Edit Supplier -->
 </br></br>
