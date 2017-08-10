@@ -33,18 +33,32 @@
 <!-- Display Supliers -->
 <div class='row'><label class="col-md-1">Search: </label><input class="col-md-4" type="text" ng-model="searchKeyword" /> </div>
 </br>
-<div ng-repeat='supplier in suppliers | startFrom:SuppCurrentPage*SuppPageSize | limitTo:SuppPageSize | filter: searchKeyword'>
-  <div class="row">
-    <div class="col-md-1">{{supplier.id}}</div>
-    <div class="col-md-3">{{supplier.name}}</div>
-    <div class="col-md-3">{{supplier.city}}</div>
-    <div class="col-md-3">{{supplier.reference}}</div>
-    <div class="col-md-2">
-      <button ng-click='editSupplier(supplier)' class="btn btn-info" ng-hide="busyEditing || busyDeleting">Edit</button>
-      <button ng-click='deleteSupplier(supplier.id)' class="btn btn-danger" ng-hide="busyEditing || busyDeleting">Delete</button>
-    </div>
-  </div>
-</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Reference</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr ng-repeat='supplier in suppliers | startFrom:SuppCurrentPage*SuppPageSize | limitTo:SuppPageSize | filter: searchKeyword'>
+      <td >{{supplier.id}}</td>
+      <td >{{supplier.name}}</td>
+      <td >{{supplier.city}}</td>
+      <td >{{supplier.reference}}</td>
+      <td >
+        <button ng-click='editSupplier(supplier)' class="btn btn-info" ng-hide="busyEditing || busyDeleting">Edit</button>
+        <button ng-click='deleteSupplier(supplier.id)' class="btn btn-danger" ng-hide="busyEditing || busyDeleting">Delete</button>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
 
     <button class='btn-sm btn' ng-disabled="SuppCurrentPage == 0" ng-click="SuppCurrentPage=SuppCurrentPage-1">
         Previous
