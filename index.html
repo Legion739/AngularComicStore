@@ -9,22 +9,23 @@
   </head>
   <body ng-controller='StoreController as storeCtrl' class="container-fluid">
 
-    <div class="row">
-      <button ng-click='goToPage("suppliers")' class="btn btn-primary col-md-4">Suppliers</button>
-      <button ng-click='goToPage("placeOrder")' class="btn btn-primary col-md-4">Place Order</button>
-      <button ng-click='goToPage("about")' class="btn btn-primary col-md-4">About</button>
-    </div>
+      <div class="row">
+        <button ng-click='goToPage("suppliers")' class="btn btn-primary col-md-4">Suppliers</button>
+        <button ng-click='goToPage("placeOrder")' class="btn btn-primary col-md-4">Place Order</button>
+        <button ng-click='goToPage("about")' class="btn btn-primary col-md-4">About</button>
+      </div>
 
-    <suppliers-dir ng-show='activePage === "suppliers"'></suppliers-dir>
-    <div ng-include src="'html/placeOrder.html'" ng-show='activePage === "placeOrder"'></div>
-    <div ng-include src="'html/about.html'" ng-show='activePage === "about"'></div>
+      <plave-order ng-show='activePage === "placeOrder"'></place-order>
+      <about-page ng-show='activePage === "about"'></about-page>
+      <suppliers-dir ng-controller='SupplierController' ng-show='activePage === "suppliers"'></suppliers-dir>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/angular-resource.min.js"></script>
     <script type="text/javascript" src="js/controllers/app.js"></script>
-    <script type="text/javascript" src="js/directives/suppliersDir.js"></script>
+    <script type="text/javascript" src="js/controllers/supplierController.js"></script>
+    <script type="text/javascript" src="js/directives/storeDirectives.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
   </body>
 </html>
