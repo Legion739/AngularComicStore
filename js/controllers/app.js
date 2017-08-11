@@ -1,12 +1,4 @@
-var app = angular.module('myApp', ['ngResource']);
-
-// TODO if I put the directive here it works fine
-// app.directive("suppliersDir", function() {
-//   return {
-//     restrict: 'E',
-//     templateUrl: "./html/suppliers.html"
-//   };
-// });
+var app = angular.module('myApp', ['myApp.services', 'ngResource']);
 
 app.controller('StoreController',[ '$scope', 'showcaseService', function($scope, showcaseService) {
 

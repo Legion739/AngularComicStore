@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngResource']);
+var app = angular.module('myApp');
 
 app.directive("suppliersDir", function() {
   return {
