@@ -15,7 +15,7 @@
       <button ng-click='goToPage("about")' class="btn btn-primary col-md-4">About</button>
     </div>
 
-    <suppliers-dir></suppliers-dir>
+    <suppliers-dir ng-show='activePage === "suppliers"'></suppliers-dir>
     <div ng-include src="'html/placeOrder.html'" ng-show='activePage === "placeOrder"'></div>
     <div ng-include src="'html/about.html'" ng-show='activePage === "about"'></div>
 
