@@ -15,7 +15,7 @@
       <button ng-click='goToPage("about")' class="btn btn-primary col-md-4">About</button>
     </div>
 
-    <div ng-include src="'html/suppliers.html'" ng-show='activePage === "suppliers"'></div>
+    <suppliers-dir></suppliers-dir>
     <div ng-include src="'html/placeOrder.html'" ng-show='activePage === "placeOrder"'></div>
     <div ng-include src="'html/about.html'" ng-show='activePage === "about"'></div>
 
@@ -24,7 +24,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/angular-resource.min.js"></script>
     <script type="text/javascript" src="js/controllers/app.js"></script>
-    <!-- <script type="text/javascript" src="js/directives/suppliersDir.js"></script> -->
+    <!-- TODO if I add the below script it causes a error -->
+    <script type="text/javascript" src="js/directives/suppliersDir.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
   </body>
 </html>
