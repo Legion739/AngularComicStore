@@ -14,7 +14,7 @@ app.directive("aboutPage", function() {
   };
 });
 
-app.directive("plaveOrder", function() {
+app.directive("placeOrder", function() {
   return {
     restrict: 'E',
     templateUrl: "./html/placeOrder.html"
