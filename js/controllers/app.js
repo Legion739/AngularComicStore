@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['myApp.services', 'ngResource']);
+var app = angular.module('myApp', ['myApp.services', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap']);
 
 app.controller('StoreController',[ '$scope', 'showcaseService', function($scope, showcaseService) {
 
@@ -21,11 +21,5 @@ app.controller('StoreController',[ '$scope', 'showcaseService', function($scope,
       //do something here when orderIssue button is clicked
     };
 
-}]);
 
-app.filter('startFrom', function() {
-    return function(input, start) {
-        start = +start; //parse to int
-        return input.slice(start);
-    }
-});
+}]);
