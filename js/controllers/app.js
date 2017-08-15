@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['myApp.services', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap']);
+var app = angular.module('myApp', ['myApp.services', 'myApp.supplier', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap']);
 
 app.controller('StoreController',[ '$scope', 'showcaseService', function($scope, showcaseService) {
 
