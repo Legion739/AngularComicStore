@@ -18,7 +18,14 @@
         </div>
       </form>
   </div>
-  <button ng-click='createNewSupplier()' ng-hide='creatingNewSupplier' class="btn btn-success btn-lg">Create New Supplier</button>
+  <button ng-click='createNewSupplier()' ng-hide='creatingNewSupplier' class="btn btn-success btn-lg">Create New Supplier OLD</button>
+
+  <div ng-controller="SupplierCreateCtrl as $ctrl">
+     <button type="button" class="btn btn-success btn-lg" ng-click="$ctrl.open()">Create New Supplier</button>
+  </div>
+
+
+
 <div>
 
 <!-- Delete Supplier -->
