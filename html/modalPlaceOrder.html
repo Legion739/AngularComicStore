@@ -13,14 +13,10 @@
       <div class="row">
         <label class="col-md-3">Reference: </label><input class="col-md-4" type="text" ng-model="newSupplier.reference" />
       </div>
-      <div class="row ">
-        <button ng-click='submitNewSupplier(newSupplier)' class="btn btn-info" >Submit</button>
-        <button ng-click='cancelNewSupplier()' class="btn btn-danger" >Cancel</button>
-      </div>
     </form>
   </div>
   <div class="modal-footer">
-      <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+      <button class="btn btn-primary" type="button" ng-click="$ctrl.submitNewSupplier(newSupplier)">Submit</button>
       <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
   </div>
 </div>

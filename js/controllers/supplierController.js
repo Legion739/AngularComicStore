@@ -98,7 +98,7 @@ app.controller('SupplierController', [ '$scope', 'showcaseService', function($sc
 
 
 
-app.controller('SupplierCreateCtrl', function ($uibModal, $log, $document) {
+app.controller('SupplierCreateCtrl', function ($uibModal, $document) {
   var $ctrl = this;
 
   $ctrl.open = function (size, parentSelector) {
@@ -120,25 +120,28 @@ app.controller('SupplierCreateCtrl', function ($uibModal, $log, $document) {
     modalInstance.result.then(function () {
       //modal dismissed
     }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
+      console.log("Modal dismissed");
     });
   };
 
 });
 
-// Please note that $uibModalInstance represents a modal window (instance) dependency.
-// It is not the same as the $uibModal service used above.
-
-app.controller('ModalInstanceCtrl',['$uibModalInstance', function ($uibModalInstance) {
+app.controller('ModalInstanceCtrl',['$uibModalInstance', 'showcaseService', function ($uibModalInstance, showcaseService) {
   var $ctrl = this;
-
-  $ctrl.ok = function () {
-    $uibModalInstance.close();
-  };
 
   $ctrl.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
+
+  // submitEditedSupplier
+  $ctrl.submitNewSupplier = function(supplier){
+    var supplierPromise = showcaseService.save({action: "Suppliers"}, supplier);
+    supplierPromise.$promise.then(function (data) {
+         console.log("new supplier added");
+         $uibModalInstance.close();
+    });
+  };
+
 }]);
 
 app.filter('startFrom', function() {
