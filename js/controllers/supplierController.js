@@ -12,9 +12,6 @@ app.controller('SupplierController', [ '$scope', 'showcaseService', function($sc
       $scope.busyDeleting = false;
       $scope.supplierIdBeingDeleted = -1;
 
-      $scope.creatingNewSupplier = false;
-      $scope.newSupplier = [];
-
       $scope.SuppCurrentPage = 0;
       $scope.SuppPageSize = 10;
 
@@ -72,30 +69,7 @@ app.controller('SupplierController', [ '$scope', 'showcaseService', function($sc
         $scope.busyDeleting = false;
       };
 
-      // create New Supplier
-      $scope.createNewSupplier = function(supplier){
-        $scope.creatingNewSupplier = true;
-        $scope.newSupplier = {  name: '',
-                                city: '',
-                                reference: ''};
-      };
-
-      // Cancel New Supplier
-      $scope.cancelNewSupplier = function(){
-        $scope.creatingNewSupplier = false;
-      };
-
-      // submitEditedSupplier
-      $scope.submitNewSupplier = function(supplier){
-        var supplierPromise = showcaseService.save({action: "Suppliers"}, supplier);
-        supplierPromise.$promise.then(function (data) {
-             console.log("new supplier added");
-             $scope.creatingNewSupplier = false;
-        });
-      };
-
 }]);
-
 
 
 app.controller('SupplierCreateCtrl', function ($uibModal, $document) {
@@ -106,15 +80,11 @@ app.controller('SupplierCreateCtrl', function ($uibModal, $document) {
       animation: true,
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
-      templateUrl: './html/modalPlaceOrder.html',
-      controller: 'ModalInstanceCtrl',
+      templateUrl: './html/modalCreateSup.html',
+      controller: 'ModalSuppCreateInstanceCtrl',
       controllerAs: '$ctrl',
       size: size,
-      resolve: {
-        /*items: function () {
-          return null;
-        }*/
-      }
+      resolve: {}
     });
 
     modalInstance.result.then(function () {
@@ -126,7 +96,7 @@ app.controller('SupplierCreateCtrl', function ($uibModal, $document) {
 
 });
 
-app.controller('ModalInstanceCtrl',['$uibModalInstance', 'showcaseService', function ($uibModalInstance, showcaseService) {
+app.controller('ModalSuppCreateInstanceCtrl',['$uibModalInstance', 'showcaseService', function ($uibModalInstance, showcaseService) {
   var $ctrl = this;
 
   $ctrl.cancel = function () {

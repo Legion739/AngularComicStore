@@ -1,31 +1,9 @@
-<!-- Create new Supervisor -->
+<!-- Create new Supervisor Popup Modal -->
 <div>
 </br>
-  <div ng-show="creatingNewSupplier">
-      <form novalidate class="simple-form">
-        <div class="row">
-          <label class="col-md-1">Name: </label><input class="col-md-4" type="text" ng-model="newSupplier.name" />
-        </div>
-        <div class="row">
-          <label class="col-md-1">City: </label><input class="col-md-4" type="text" ng-model="newSupplier.city" />
-        </div>
-        <div class="row">
-          <label class="col-md-1">Reference: </label><input class="col-md-4" type="text" ng-model="newSupplier.reference" />
-        </div>
-        <div class="row ">
-          <button ng-click='submitNewSupplier(newSupplier)' class="btn btn-info" >Submit</button>
-          <button ng-click='cancelNewSupplier()' class="btn btn-danger" >Cancel</button>
-        </div>
-      </form>
-  </div>
-  <button ng-click='createNewSupplier()' ng-hide='creatingNewSupplier' class="btn btn-success btn-lg">Create New Supplier OLD</button>
-
   <div ng-controller="SupplierCreateCtrl as $ctrl">
      <button type="button" class="btn btn-success btn-lg" ng-click="$ctrl.open()">Create New Supplier</button>
   </div>
-
-
-
 <div>
 
 <!-- Delete Supplier -->
