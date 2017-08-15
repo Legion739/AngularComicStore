@@ -1,6 +1,6 @@
 var app = angular.module('myApp.supplier', ['myApp.services']);
 
-app.controller('SupplierController', [ '$scope', 'showcaseService', function($scope, showcaseService){
+app.controller('SupplierController', [ '$scope', 'showcaseService', '$uibModal', '$document', function($scope, showcaseService, $uibModal, $document){
 
       //initial values
       $scope.suppliers = [];
@@ -8,9 +8,6 @@ app.controller('SupplierController', [ '$scope', 'showcaseService', function($sc
 
       $scope.busyEditing = false;
       $scope.supplierBeingEditedId = [];
-
-      $scope.busyDeleting = false;
-      $scope.supplierIdBeingDeleted = -1;
 
       $scope.SuppCurrentPage = 0;
       $scope.SuppPageSize = 10;
@@ -45,29 +42,43 @@ app.controller('SupplierController', [ '$scope', 'showcaseService', function($sc
         });
       };
 
-      //delete supplier
-      $scope.deleteSupplier = function(supplierID){
-        $scope.supplierIdBeingDeleted = supplierID;
-        $scope.busyDeleting = true;
 
-      };
-
-      //delete confirmation
-      $scope.deleteSupplierConfirm = function(){
-        // Code that can be used to delete a specific supplier by ID
-        $scope.editSupSelect = showcaseService.delete({action: "Suppliers", id: $scope.supplierIdBeingDeleted }, function() {
-          $scope.busyDeleting = false;
-          console.log("You have deleted Supplier " + $scope.supplierIdBeingDeleted);
-          $scope.supplierIdBeingDeleted = -1;
-
+      // Delete Supplier
+      $scope.open = function (suppId) {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'deleteSupp.html',
+          controller: 'ModalSuppDeleteInstanceCtrl',
+          controllerAs: '$ctrl',
+          resolve: {
+            suppId: suppId
+          }
         });
 
+        modalInstance.result.then(function () {}, function () {
+          //console.log("Modal dismissed" );
+        });
       };
 
-      //delete cancel
-      $scope.deleteSupplierCancel = function(){
-        $scope.busyDeleting = false;
-      };
+}]);
+
+app.controller('ModalSuppDeleteInstanceCtrl',['$uibModalInstance', 'showcaseService', 'suppId', function ($uibModalInstance, showcaseService, suppId) {
+  var $ctrl = this;
+  $ctrl.suppId = suppId
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+
+  $ctrl.deleteSupplierConfirm = function(){
+    // Code that can be used to delete a specific supplier by ID
+    showcaseService.delete({action: "Suppliers", id: $ctrl.suppId }, function() {
+      console.log("You have deleted Supplier " + $ctrl.suppId);
+      $uibModalInstance.close();
+    });
+  };
 
 }]);
 
