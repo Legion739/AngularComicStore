@@ -3,7 +3,7 @@ var app = angular.module('myApp.supplier');
 app.controller('SupplierCreateCtrl', function ($uibModal, $document) {
   var $ctrl = this;
 
-  $ctrl.open = function (size, parentSelector) {
+  $ctrl.openCreateModal = function (size, parentSelector) {
     var modalInstance = $uibModal.open({
       animation: true,
       ariaLabelledBy: 'modal-title',

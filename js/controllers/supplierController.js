@@ -4,10 +4,6 @@ app.controller('SupplierController', [ '$scope', 'showcaseService', '$uibModal',
 
       //initial values
       $scope.suppliers = [];
-      $scope.editSupSelect = "";
-
-      $scope.busyEditing = false;
-      $scope.supplierBeingEditedId = [];
 
       $scope.SuppCurrentPage = 0;
       $scope.SuppPageSize = 10;
@@ -20,31 +16,27 @@ app.controller('SupplierController', [ '$scope', 'showcaseService', '$uibModal',
       });
 
       // Edit Supplier
-      $scope.editSupplier = function(supplier){
-        $scope.busyEditing = true;
-        $scope.supplierBeingEditedId = supplier
-        console.log("Editing this supplier " + supplier.id);
-        //do something here when edit supplier is clicked
-      };
+      $scope.openEditModal = function (supplier) {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: './html/modalEditSup.html',
+          controller: 'ModalSuppEditInstanceCtrl',
+          controllerAs: '$ctrl',
+          resolve: {
+            supplier: supplier
+          }
+        });
 
-      // Cancel Supplier Edit
-      $scope.cancelSupplierEdit = function(){
-        $scope.busyEditing = false;
-        $scope.supplierBeingEditedId = [];
-      };
-
-      // submitEditedSupplier
-      $scope.submitEditedSupplier = function(supplier){
-        var editSupplierPromise = showcaseService.update({}, supplier);
-        editSupplierPromise.$promise.then(function (data) {
-             console.log(data);
-             $scope.busyEditing = false;
+        modalInstance.result.then(function () {}, function () {
+          //console.log("Modal dismissed" );
         });
       };
 
 
       // Delete Supplier
-      $scope.open = function (suppId) {
+      $scope.openDeleteModal = function (suppId) {
         var modalInstance = $uibModal.open({
           animation: true,
           ariaLabelledBy: 'modal-title',
@@ -78,6 +70,26 @@ app.controller('ModalSuppDeleteInstanceCtrl',['$uibModalInstance', 'showcaseServ
       console.log("You have deleted Supplier " + $ctrl.suppId);
       $uibModalInstance.close();
     });
+  };
+
+}]);
+
+app.controller('ModalSuppEditInstanceCtrl',['$uibModalInstance', 'showcaseService', 'supplier', function ($uibModalInstance, showcaseService, supplier) {
+  var $ctrl = this;
+  $ctrl.supplier = supplier
+
+  // TODO This is broken now for some reason....
+  $ctrl.editSupplier = function(supplier){
+    var editSupplierPromise = showcaseService.update({}, supplier);
+    editSupplierPromise.$promise.then(function (data) {
+         console.log(data);
+         console.log("You have edited Supplier ");
+         $uibModalInstance.close();
+    });
+  };
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
   };
 
 }]);
