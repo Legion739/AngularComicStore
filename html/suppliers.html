@@ -1,61 +1,61 @@
 <!-- Create new Supervisor Popup Modal -->
 <div>
-</br>
+  </br>
   <div ng-controller="SupplierCreateCtrl as $ctrl">
-     <button type="button" class="btn btn-success btn-lg" ng-click="$ctrl.openCreateModal()">Create New Supplier</button>
+    <button type="button" class="btn btn-success btn-lg" ng-click="$ctrl.openCreateModal()">Create New Supplier</button>
   </div>
-<div>
-</br>
+  <div>
+    </br>
 
-<!-- Delete Supplier -->
-<div ng-controller="SupplierController as $ctrl">
-  <script type="text/ng-template" id="deleteSupp.html">
+    <!-- Delete Supplier -->
+    <div ng-controller="SupplierController as $ctrl">
+      <script type="text/ng-template" id="deleteSupp.html">
         <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">Delete Supplier {{$ctrl.suppId}} ? </h3>
+          <h3 class="modal-title" id="modal-title">Delete Supplier {{$ctrl.suppId}} ? </h3>
         </div>
         <div class="modal-body" id="modal-body">
-            Are you sure ?
+          Are you sure ?
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="$ctrl.deleteSupplierConfirm()">Delete</button>
-            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+          <button class="btn btn-primary" type="button" ng-click="$ctrl.deleteSupplierConfirm()">Delete</button>
+          <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
         </div>
-    </script>
-</div>
+      </script>
+    </div>
 
-<!-- Display Supliers -->
-<div class='row'><label class="col-md-1">Search: </label><input class="col-md-4" type="text" ng-model="searchKeyword" /> </div>
-</br>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>City</th>
-      <th>Reference</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat='supplier in suppliers | startFrom:SuppCurrentPage*SuppPageSize | limitTo:SuppPageSize | filter: searchKeyword'>
-      <td >{{supplier.id}}</td>
-      <td >{{supplier.name}}</td>
-      <td >{{supplier.city}}</td>
-      <td >{{supplier.reference}}</td>
-      <td >
-        <button ng-click='openEditModal(supplier)' class="btn btn-info">Edit</button>
-        <button  ng-click="openDeleteModal(supplier.id)" class="btn btn-danger">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <!-- Display Supliers -->
+    <div class='row'><label class="col-md-1">Search: </label><input class="col-md-4" type="text" ng-model="searchKeyword" /> </div>
+    </br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Reference</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='supplier in suppliers | startFrom:SuppCurrentPage*SuppPageSize | limitTo:SuppPageSize | filter: searchKeyword'>
+          <td>{{supplier.id}}</td>
+          <td>{{supplier.name}}</td>
+          <td>{{supplier.city}}</td>
+          <td>{{supplier.reference}}</td>
+          <td>
+            <button ng-click='openEditModal(supplier)' class="btn btn-info">Edit</button>
+            <button ng-click="openDeleteModal(supplier.id)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <button class='btn-sm btn' ng-disabled="SuppCurrentPage == 0" ng-click="SuppCurrentPage=SuppCurrentPage-1">
         Previous
-    </button>
-    {{SuppCurrentPage+1}}/{{numberOfPages()}}
+    </button> {{SuppCurrentPage+1}}/{{numberOfPages()}}
     <button class='btn-sm btn' ng-disabled="SuppCurrentPage >= suppliers.length/SuppPageSize - 1" ng-click="SuppCurrentPage=SuppCurrentPage+1">
         Next
     </button>
 
-</br></br>
+    </br>
+    </br>

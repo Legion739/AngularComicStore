@@ -69,22 +69,28 @@ app.controller('ModalSuppDeleteInstanceCtrl',['$uibModalInstance', 'showcaseServ
     showcaseService.delete({action: "Suppliers", id: $ctrl.suppId }, function() {
       console.log("You have deleted Supplier " + $ctrl.suppId);
       $uibModalInstance.close();
+    },function(error){
+      alertsService.addAlert('danger',  'Oh snap! something went wrong trying to Delete the Supplier.');
+      $uibModalInstance.close();
+      return error;
     });
   };
 
 }]);
 
-app.controller('ModalSuppEditInstanceCtrl',['$uibModalInstance', 'showcaseService', 'supplier', function ($uibModalInstance, showcaseService, supplier) {
+app.controller('ModalSuppEditInstanceCtrl',['$uibModalInstance', 'showcaseService', 'supplier', 'alertsService', function ($uibModalInstance, showcaseService, supplier, alertsService) {
   var $ctrl = this;
   $ctrl.supplier = supplier
 
-  // TODO This is broken now for some reason....
   $ctrl.editSupplier = function(supplier){
     var editSupplierPromise = showcaseService.update({}, supplier);
     editSupplierPromise.$promise.then(function (data) {
-         console.log(data);
          console.log("You have edited Supplier ");
          $uibModalInstance.close();
+    },function(error){
+      alertsService.addAlert('danger',  'Oh snap! something went wrong trying to Edit the Supplier.');
+      $uibModalInstance.close();
+      return error;
     });
   };
 

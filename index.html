@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html ng-app='myApp' lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Comic Store</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  </head>
-  <body ng-controller='StoreController as storeCtrl' class="container-fluid">
 
-      <div class="row">
-        <button ng-click='goToPage("suppliers")' class="btn btn-primary col-md-4">Suppliers</button>
-        <button ng-click='goToPage("placeOrder")' class="btn btn-primary col-md-4">Place Order</button>
-        <button ng-click='goToPage("about")' class="btn btn-primary col-md-4">About</button>
-      </div>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comic Store</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
 
+<body ng-controller='StoreController as storeCtrl' class="container-fluid">
 
-      <place-order ng-show='activePage === "placeOrder"'></place-order>
-      <suppliers-dir ng-controller='SupplierController' ng-show='activePage === "suppliers"'></suppliers-dir>
-      <about-page ng-show='activePage === "about"'></about-page>
+  <!-- Navigation -->
+  <div class="row">
+    <button ng-click='goToPage("suppliers")' class="btn btn-primary col-md-4">Suppliers</button>
+    <button ng-click='goToPage("placeOrder")' class="btn btn-primary col-md-4">Place Order</button>
+    <button ng-click='goToPage("about")' class="btn btn-primary col-md-4">About</button>
+  </div>
 
+  <!-- Alert messages -->
+  <div ng-controller="StoreController">
+    </br>
+    <script type="text/ng-template" id="alert.html">
+      <div ng-transclude></div>
+    </script>
+    <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+  </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+  <!-- Pages -->
+  <place-order ng-show='activePage === "placeOrder"'></place-order>
+  <suppliers-dir ng-controller='SupplierController' ng-show='activePage === "suppliers"'></suppliers-dir>
+  <about-page ng-show='activePage === "about"'></about-page>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/css" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+  <!-- Scripts -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/css" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+  <script type="text/javascript" src="js/angular-resource.min.js"></script>
+  <script type="text/javascript" src="js/controllers/app.js"></script>
+  <script type="text/javascript" src="js/controllers/supplierController.js"></script>
+  <script type="text/javascript" src="js/controllers/suppCreateController.js"></script>
+  <script type="text/javascript" src="js/directives/storeDirectives.js"></script>
+  <script type="text/javascript" src="js/services.js"></script>
 
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+</body>
 
-
-    <script type="text/javascript" src="js/angular-resource.min.js"></script>
-    <script type="text/javascript" src="js/controllers/app.js"></script>
-    <script type="text/javascript" src="js/controllers/supplierController.js"></script>
-    <script type="text/javascript" src="js/controllers/suppCreateController.js"></script>
-    <script type="text/javascript" src="js/directives/storeDirectives.js"></script>
-    <script type="text/javascript" src="js/services.js"></script>
-
-  </body>
 </html>
