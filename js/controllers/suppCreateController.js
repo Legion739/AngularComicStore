@@ -24,7 +24,7 @@ app.controller('SupplierCreateCtrl', function($uibModal, $document) {
 
 });
 
-app.controller('ModalSuppCreateInstanceCtrl', ['$uibModalInstance', 'showcaseService', function($uibModalInstance, showcaseService) {
+app.controller('ModalSuppCreateInstanceCtrl', ['$uibModalInstance', 'showcaseService', 'alertsService', function($uibModalInstance, showcaseService, alertsService) {
   var $ctrl = this;
 
   $ctrl.cancel = function() {
@@ -37,7 +37,7 @@ app.controller('ModalSuppCreateInstanceCtrl', ['$uibModalInstance', 'showcaseSer
       action: "Suppliers"
     }, supplier);
     supplierPromise.$promise.then(function(data) {
-      console.log("new supplier added");
+      alertsService.addAlert('success', 'Successfully added new supplier ');
       $uibModalInstance.close();
     },function(error){
       alertsService.addAlert('danger',  'Oh snap! something went wrong trying to Create a Supplier.');

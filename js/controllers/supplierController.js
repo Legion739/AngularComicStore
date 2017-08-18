@@ -66,7 +66,7 @@ app.controller('SupplierController', ['$scope', 'showcaseService', '$uibModal', 
 
 }]);
 
-app.controller('ModalSuppDeleteInstanceCtrl', ['$uibModalInstance', 'showcaseService', 'suppId', function($uibModalInstance, showcaseService, suppId) {
+app.controller('ModalSuppDeleteInstanceCtrl', ['$uibModalInstance', 'showcaseService', 'suppId', 'alertsService', function($uibModalInstance, showcaseService, suppId, alertsService) {
   var $ctrl = this;
   $ctrl.suppId = suppId
 
@@ -80,7 +80,7 @@ app.controller('ModalSuppDeleteInstanceCtrl', ['$uibModalInstance', 'showcaseSer
       action: "Suppliers",
       id: $ctrl.suppId
     }, function() {
-      console.log("You have deleted Supplier " + $ctrl.suppId);
+      alertsService.addAlert('success', 'Successfully deleted Supplier ' +  $ctrl.suppId);
       $uibModalInstance.close();
     }, function(error) {
       alertsService.addAlert('danger', 'Oh snap! something went wrong trying to Delete the Supplier.');
@@ -98,7 +98,7 @@ app.controller('ModalSuppEditInstanceCtrl', ['$uibModalInstance', 'showcaseServi
   $ctrl.editSupplier = function(supplier) {
     var editSupplierPromise = showcaseService.update({}, supplier);
     editSupplierPromise.$promise.then(function(data) {
-      console.log("You have edited Supplier ");
+      alertsService.addAlert('success', 'Successfully edited Supplier');
       $uibModalInstance.close();
     }, function(error) {
       alertsService.addAlert('danger', 'Oh snap! something went wrong trying to Edit the Supplier.');

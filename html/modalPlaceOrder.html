@@ -1,0 +1,37 @@
+<div>
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Place Order for: {{$ctrl.issue.title}}</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <form novalidate class="simple-form">
+      <div class="row">
+        <div class="col-md-2">Supplier: </div>
+        <div class="col-md-8 ">
+          <select class="form-control" ng-model="newOrder.selectedSupp" required>
+          <option ng-repeat="supplier in $ctrl.suppliers" value="{{supplier.id}}">{{supplier.name}}</option>
+        </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">Quality: </div>
+        <div class="col-md-8 ">
+          <select class="form-control" ng-model="newOrder.selectedQual" required>
+          <option ng-repeat="quality in $ctrl.quality" value="{{quality}}">{{quality}}</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">Number: </div>
+        <div class="col-md-2 ">
+          <input class="form-control" type="number" name="input" ng-model="newOrder.quantity" min="0" max="1000" required>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.submitPlaceOrder(newOrder)">Submit</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+  </div>
+</div>

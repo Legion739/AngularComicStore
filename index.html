@@ -12,15 +12,21 @@
 <body ng-controller='StoreController as storeCtrl' class="container-fluid">
 
   <!-- Navigation -->
-  <div class="row">
-    <button ng-click='goToPage("suppliers")' class="btn btn-primary col-md-4">Suppliers</button>
-    <button ng-click='goToPage("placeOrder")' class="btn btn-primary col-md-4">Place Order</button>
-    <button ng-click='goToPage("about")' class="btn btn-primary col-md-4">About</button>
-  </div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">Comic Book Store</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ng-class=" activePage == 'suppliers' ? 'active' : 'inactive'"><a ng-click='goToPage("suppliers")'>Suppliers</a></li>
+        <li ng-class=" activePage == 'placeOrder' ? 'active' : 'inactive'"><a ng-click='goToPage("placeOrder")'>Place Order</a></li>
+        <li ng-class=" activePage == 'about' ? 'active' : 'inactive'"><a ng-click='goToPage("about")'>About</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- Alert messages -->
   <div ng-controller="StoreController">
-    </br>
     <script type="text/ng-template" id="alert.html">
       <div ng-transclude></div>
     </script>
@@ -28,7 +34,7 @@
   </div>
 
   <!-- Pages -->
-  <place-order ng-show='activePage === "placeOrder"'></place-order>
+  <place-order ng-controller='OrdersController' ng-show='activePage === "placeOrder"'></place-order>
   <suppliers-dir ng-controller='SupplierController' ng-show='activePage === "suppliers"'></suppliers-dir>
   <about-page ng-show='activePage === "about"'></about-page>
 
@@ -43,6 +49,7 @@
   <script type="text/javascript" src="js/angular-resource.min.js"></script>
   <script type="text/javascript" src="js/controllers/app.js"></script>
   <script type="text/javascript" src="js/controllers/supplierController.js"></script>
+  <script type="text/javascript" src="js/controllers/ordersController.js"></script>
   <script type="text/javascript" src="js/controllers/suppCreateController.js"></script>
   <script type="text/javascript" src="js/directives/storeDirectives.js"></script>
   <script type="text/javascript" src="js/services.js"></script>

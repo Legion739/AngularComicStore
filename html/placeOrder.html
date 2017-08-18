@@ -6,7 +6,7 @@
   <div class="row">
     <img class="col-md-2" ng-src="{{issue.thumbnail.pathIncludingExtension}}" alt="Oops No Image" />
     <div class="col-md-3">{{issue.description}}</div>
-    <button ng-click='orderIssue(issue.id)' class="btn btn-primary">Place Order</button>
+    <button ng-click='openPlaceOrderModal(issue)' class="btn btn-primary">Place Order</button>
   </div>
   </br>
 </div>
