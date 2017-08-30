@@ -8,7 +8,7 @@ app.controller('SupplierCreateCtrl', function($uibModal, $document) {
       animation: true,
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
-      templateUrl: './html/modalCreateSup.html',
+      templateUrl: './views/modalCreateSup.html',
       controller: 'ModalSuppCreateInstanceCtrl',
       controllerAs: '$ctrl',
       size: size,

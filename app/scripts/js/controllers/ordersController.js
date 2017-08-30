@@ -23,7 +23,7 @@ app.controller('OrdersController', ['$scope', 'showcaseService', '$uibModal', fu
       animation: true,
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
-      templateUrl: './html/modalPlaceOrder.html',
+      templateUrl: './views/modalPlaceOrder.html',
       controller: 'ModalPlaceOrderInstanceCtrl',
       controllerAs: '$ctrl',
       resolve: {

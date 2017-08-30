@@ -27,7 +27,7 @@ app.controller('SupplierController', ['$scope', 'showcaseService', '$uibModal', 
       animation: true,
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
-      templateUrl: './html/modalEditSup.html',
+      templateUrl: './views/modalEditSup.html',
       controller: 'ModalSuppEditInstanceCtrl',
       controllerAs: '$ctrl',
       resolve: {
